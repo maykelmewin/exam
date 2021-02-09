@@ -7,8 +7,8 @@ body {
 body div.q {
   border-radius: 8%;
   background-color: white;
-  min-height: 450px;
-  width: 500px;
+  min-height: 400px;
+  width: 450px;
   margin: auto;
   margin-top: 100px;
   margin-bottom: 100px;
@@ -57,5 +57,18 @@ body div.q p {
 
 body div.q .input-group {
   padding: 10px;
+}
+
+body .table {
+  padding: 40px;
+  margin-top: -100px;
+  -webkit-transition: -webkit-box-shadow .5s;
+  transition: -webkit-box-shadow .5s;
+  transition: box-shadow .5s;
+  transition: box-shadow .5s, -webkit-box-shadow .5s;
+}
+
+body .table table {
+  margin: auto;
 }
 /*# sourceMappingURL=style.css.map */

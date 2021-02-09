@@ -118,3 +118,105 @@ function squareroot(number, guessnumber){
 
 
 
+
+// question 5
+function q5(){
+
+    var firstnumber = document.getElementById("q5n1").value;
+    if(firstnumber%2 != 0){
+        ino = firstnumber;
+        ln = ino * ino;
+        ms = [];
+        for (var j = 0; j < ln; j++) {
+            ms.push(0);
+        }
+        
+        
+        cp = (ino - 1 ) / 2;
+        n = 1;
+        f = ino-1;
+
+        numbering(cp, n++);
+        going(cp, n, f);
+
+        
+       
+        var perrow = ino, html = "<table><tr>";
+        for (var i=0; i<ms.length; i++) {
+            html += `<td>${ms[i]}</td>`;
+            var next = i+1;
+            if (next%perrow==0 && next!=ms.length) {
+            html += "</tr><tr>";
+            }
+        }
+        html += "</tr></table>";
+        document.getElementById("q5a").innerHTML = html;
+         
+
+    }else{
+        alert("Enter odd number only!");
+    }
+}
+
+function numbering(arrayIndex, n){
+    if(ms[arrayIndex] == 0){
+        ms.splice(arrayIndex, 1, n);
+    }else{
+        alert("error! Has number " + ms[arrayIndex]);
+    }
+}
+
+function going(cp, n, f){
+    if(n <= ln){
+        if(f!= ino-1){
+            var j = f * ino;
+            var k = ino - ( cp +1) % ino;
+            var l = j + k + cp 
+            if(l+1 == ln ){
+                if( ms[cp-ino+1] == 0){
+                    actionN();
+                }else{
+                    actionD();
+                }
+            }else{
+                actionTU();
+            }
+        }else{
+            if(cp+1 == ino ){
+                actionD();
+            }else{
+                actionTL();
+            }
+        }
+    }
+}
+
+function actionTL(){
+    var k = ino - (cp + 1 ) % ino;
+    cp = ln - k ;
+    f = 0; 
+    numbering(cp, n++);
+    going(cp, n, f);
+}
+
+function actionTU(){
+    cp = cp - (ino*2) + 1;
+    f++;
+    numbering(cp, n++);
+    going(cp, n, f);
+}
+
+function actionD(){
+    cp = parseInt(cp) + parseInt(ino);
+    f--;
+    numbering(cp, n++);
+    going(cp, n, f);
+}
+
+function actionN(){
+    cp = cp - ino + 1;
+    f++;
+    numbering(cp, n++);
+    going(cp, n, f);
+}
+
