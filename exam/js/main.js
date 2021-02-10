@@ -1,16 +1,21 @@
+
 // question 1
 function q1(){
 
     var firstnumber = document.getElementById("q1n1").value;
     var secondnumber = document.getElementById("q1n2").value;
-    var textanswer = firstnumber + "." + secondnumber ;
-    for (i = 0; i < 8; i++) {
-        currentanswer = parseInt(firstnumber) + parseInt(secondnumber);
-        textanswer = textanswer + "." + currentanswer;
-        firstnumber = secondnumber;
-        secondnumber = currentanswer;
-    }
-    document.getElementById("q1a").innerHTML = textanswer;   
+    if( firstnumber > 0 || firstnumber < 0 || secondnumber > 0 || secondnumber < 0){
+        var textanswer = firstnumber + "." + secondnumber ;
+        for (i = 0; i < 8; i++) {
+            currentanswer = parseInt(firstnumber) + parseInt(secondnumber);
+            textanswer = textanswer + "." + currentanswer;
+            firstnumber = secondnumber;
+            secondnumber = currentanswer;
+        }
+        document.getElementById("q1a").innerHTML = textanswer;
+    }else{
+        alert("Wrong Input");
+    }   
 }
 
 
@@ -22,29 +27,30 @@ function q1(){
 function q2(){
     
     var firstnumber = document.getElementById("q2n1").value;
-    x = Math.abs(firstnumber);
-
-    answer="";
-    while(x >= 1){
-        if(x % 2){
-            y = x /2;
-            x =  Math.trunc(y);
-            answer = "1" + answer;
-        } else{
-            x = x /2;
-            answer = "0" + answer;
+    if( firstnumber > 0 || firstnumber < 0){
+        x = Math.abs(firstnumber);
+        answer="";
+        while(x >= 1){
+            if(x % 2){
+                y = x /2;
+                x =  Math.trunc(y);
+                answer = "1" + answer;
+            } else{
+                x = x /2;
+                answer = "0" + answer;
+            }
         }
-    }
-
-    if ( firstnumber == 0 ) {
-    var textanswer = 0;
-    } else if(firstnumber > 0){
-    var textanswer = answer;
+        if ( firstnumber == 0 ) {
+        var textanswer = 0;
+        } else if(firstnumber > 0){
+        var textanswer = answer;
+        }else{
+        var textanswer = "-" + answer;
+        }
+        document.getElementById("q2a").innerHTML = textanswer;   
     }else{
-    var textanswer = "-" + answer;
-    }
-
-    document.getElementById("q2a").innerHTML = textanswer;   
+        alert("Wrong Input");
+    } 
 }
 
 
@@ -53,13 +59,21 @@ function q2(){
 
 // question 3
 function q3(){
+
     ans = [];
     var firstnumber = document.getElementById("q3n1").value;
-    ans.push(firstnumber);
-
-    check();
-    ans.sort(function(a, b){return a-b});
-    document.getElementById("q3a").innerHTML = ans.join(" X ");   
+    
+    if( firstnumber > 1){
+        ans.push(firstnumber);
+        check();
+        ans.sort(function(a, b){return a-b});
+        document.getElementById("q3a").innerHTML = ans.join(" X ");   
+    }else if(firstnumber == 1){
+        document.getElementById("q3a").innerHTML = "No Prime Factor";
+    }
+    else{
+        alert("Wrong Input");
+    }
 }
 
 // check if all in the array are prime numbers
@@ -97,10 +111,13 @@ function factor(x){
 
 // question 4
 function q4(){
-
     var firstnumber = document.getElementById("q4n1").value;
-    textanswer = squareroot(firstnumber);
-    document.getElementById("q4a").innerHTML = textanswer;   
+    if( firstnumber > 0){
+        textanswer = squareroot(firstnumber);
+        document.getElementById("q4a").innerHTML = textanswer;  
+    }else{
+        alert("Wrong Input");
+    } 
 }
 
 function squareroot(number, guessnumber){
@@ -123,7 +140,7 @@ function squareroot(number, guessnumber){
 function q5(){
 
     var firstnumber = document.getElementById("q5n1").value;
-    if(firstnumber%2 != 0){
+    if(firstnumber%2 != 0 && firstnumber > 0){
         ino = firstnumber;
         ln = ino * ino;
         ms = [];
